@@ -22,4 +22,3 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/logout', [UserController::class, "logout"]); //ok
         Route::post('/balance_create', [BalanceController::class, "balance_create"]); //ok
     });
-Route::post('/balance_create', [BalanceController::class, "balance_create"]); //ok

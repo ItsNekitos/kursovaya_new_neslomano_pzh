@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class BalanceController extends Controller
 {
-    public function blance_create(){
+    public function balance_create()
+    {
         $balance = new Balance();
-        $balance->user_id = Auth::user();
+        $balance->user_id = Auth::user()->id;
         $balance->balance = 0.00;
-        $balance->save(); 
-        return response()->json(['message' => 'ok']);
+        $balance->save();
+        return response([
+            "success" => true,
+            "message" => "Success",
+        ]);
     }
 }
