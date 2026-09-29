@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BalanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ Route::get('/user', function (Request $request) {
 Route::post('/registration', [UserController::class, "registration"]); //ok
 Route::post('/authorization', [UserController::class, "authorization"]); //ok
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {  
         Route::get('/logout', [UserController::class, "logout"]); //ok
+        Route::post('/balance_create', [BalanceController::class, "balance_create"]); //ok
     });
+Route::post('/balance_create', [BalanceController::class, "balance_create"]); //ok
