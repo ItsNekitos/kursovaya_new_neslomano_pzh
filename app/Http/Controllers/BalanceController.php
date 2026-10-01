@@ -17,6 +17,7 @@ class BalanceController extends Controller
         return response([
             "success" => true,
             "message" => "Success",
+            "balance_id" => $balance->id,
         ]);
     }
 }

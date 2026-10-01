@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    // public function categoriesHome()
-    // {
-    //     return Category::all();
-    // }
     public function category_create(StoreCategoryRequest $request)
     {
         $category = new Category();
@@ -19,7 +15,7 @@ class CategoryController extends Controller
         $category->platezh = $request->platezh;
         $category->save(); 
         return response([
-            "success" => true, "message" => "Success"
+            "success" => true, "message" => "Success", "category_id" => $category->id,
         ]);
     }
 }
