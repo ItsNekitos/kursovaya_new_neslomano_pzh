@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,8 @@ Route::post('/authorization', [UserController::class, "authorization"]); //ok
 
 Route::middleware('auth:sanctum')->group(function () {  
         Route::get('/logout', [UserController::class, "logout"]); //ok
+
         Route::post('/balance_create', [BalanceController::class, "balance_create"]); //ok
+
+        Route::post('/category_create', [CategoryController::class, "category_create"]); //ok
     });

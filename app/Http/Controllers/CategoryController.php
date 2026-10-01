@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function categoriesHome()
-    {
-        return Category::all();
-    }
-    public function store(StoreCategoryRequest $request)
+    // public function categoriesHome()
+    // {
+    //     return Category::all();
+    // }
+    public function category_create(StoreCategoryRequest $request)
     {
         $category = new Category();
-        $category->name = $request->category_name;
+        $category->name = $request->name;
         $category->platezh = $request->platezh;
         $category->save(); 
-        return response()->json(['message' => 'ok']);
+        return response([
+            "success" => true, "message" => "Success"
+        ]);
     }
 }
