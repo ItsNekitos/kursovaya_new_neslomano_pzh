@@ -20,4 +20,13 @@ class BalanceController extends Controller
             "balance_id" => $balance->id,
         ]);
     }
+    public function balance_delete($balance_id)
+    {
+        $balance = Balance::where('balance_id', $balance_id);
+        $balance->delete();
+        return response([
+            "success" => true,
+            "message" => "Success",
+        ]);
+    }
 }

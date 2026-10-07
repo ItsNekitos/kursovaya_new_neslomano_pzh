@@ -21,4 +21,13 @@ class SavingController extends Controller
             "message" => "Success",
         ]);
     }
+    public function saving_delete($saving_id)
+    {
+       $saving = Saving::where('id', $saving_id);
+       $saving->delete();
+        return response([
+            "success" => true,
+            "message" => "Success",
+        ]);
+    }
 }
