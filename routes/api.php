@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/category_create', [CategoryController::class, "category_create"]); //ok
 
         Route::post('/saving_create', [SavingController::class, "saving_create"]); //ok
-        Route::post('/saving_delete/{saving_id}', [SavingController::class, "saving_delete"]); //ok
+        Route::delete('/saving_delete/{saving_id}', [SavingController::class, "saving_delete"]); //ok
 
         Route::post('/limit_create/{balance_id}/{category_id}', [LimitController::class, "limit_create"]); //ok
         Route::delete('/limit_delete/{balance_id}/{category_id}', [LimitController::class, "limit_delete"]); //ok
