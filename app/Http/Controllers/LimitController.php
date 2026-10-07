@@ -10,20 +10,24 @@ class LimitController extends Controller
 {
     public function limit_create(LimitCreateRequest $request, $balance_id, $category_id)
     {
-        $saving = new Limit();
-        $saving->balance_id = $balance_id;
-        $saving->category_id = $category_id;
-        $saving->max_summ = $request->max_summ;
-        $saving->rashod_limit_date = $request->rashod_limit_date;
-        $saving->save();
+        $limit = new Limit();
+        $limit->balance_id = $balance_id;
+        $limit->category_id = $category_id;
+        $limit->max_summ = $request->max_summ;
+        $limit->rashod_limit_date = $request->rashod_limit_date;
+        $limit->save();
         return response([
             "success" => true,
             "message" => "Success",
         ]);
     }
-    // public function destroy($recipeid)
-    // {
-    //    $favorites = Favorite::where('recipe_id', $recipeid)->where('user_id', Auth::user()->id);
-    //    return $favorites->delete();
-    // }
+    public function limit_delete($balance_id, $category_id)
+    {
+       $limit = Limit::where('balance_id', $balance_id)->where('category_id', $category_id);
+       $limit->delete();
+        return response([
+            "success" => true,
+            "message" => "Success",
+        ]);
+    }
 }

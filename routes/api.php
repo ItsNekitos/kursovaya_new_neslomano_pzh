@@ -9,6 +9,7 @@ use App\Http\Controllers\FileAccessController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LimitController;
 use App\Http\Controllers\SavingController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
@@ -31,4 +32,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/saving_create', [SavingController::class, "saving_create"]); //ok
 
         Route::post('/limit_create/{balance_id}/{category_id}', [LimitController::class, "limit_create"]); //ok
+        Route::delete('/limit_delete/{balance_id}/{category_id}', [LimitController::class, "limit_delete"]); //ok
+
+        Route::post('/transaction_create/{category_id}/{balance_id}', [TransactionController::class, "transaction_create"]); //ok
     });
