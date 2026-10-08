@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SavingCreateRequest;
+use App\Models\Balance;
 use App\Models\Saving;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

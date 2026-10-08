@@ -18,4 +18,13 @@ class CategoryController extends Controller
             "success" => true, "message" => "Success", "category_id" => $category->id,
         ]);
     }
+    public function category_delete($category_id)
+    {
+        $category = Category::where('id', $category_id);
+        $category->delete();
+        return response([
+            "success" => true,
+            "message" => "Success",
+        ]);
+    }
 }

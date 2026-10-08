@@ -25,10 +25,12 @@ Route::post('/authorization', [UserController::class, "authorization"]); //ok
 Route::middleware('auth:sanctum')->group(function () {  
         Route::get('/logout', [UserController::class, "logout"]); //ok
 
+        Route::get('/balance_view/{balance_id}', [BalanceController::class, "balance_view"]); //ok
         Route::post('/balance_create', [BalanceController::class, "balance_create"]); //ok
         Route::delete('/balance_delete/{balance_id}', [BalanceController::class, "balance_delete"]); //ok
 
         Route::post('/category_create', [CategoryController::class, "category_create"]); //ok
+        Route::delete('/category_delete/{category_id}', [CategoryController::class, "category_delete"]); //ok
 
         Route::post('/saving_create', [SavingController::class, "saving_create"]); //ok
         Route::delete('/saving_delete/{saving_id}', [SavingController::class, "saving_delete"]); //ok
