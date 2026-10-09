@@ -30,13 +30,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/balance_delete/{balance_id}', [BalanceController::class, "balance_delete"]); //ok
 
         Route::post('/category_create', [CategoryController::class, "category_create"]); //ok
+        Route::get('/category_view/{category_id}', [CategoryController::class, "category_view"]); //ok
+        Route::put('/category_update/{category_id}', [CategoryController::class, "category_update"]); //ok
         Route::delete('/category_delete/{category_id}', [CategoryController::class, "category_delete"]); //ok
 
         Route::post('/saving_create', [SavingController::class, "saving_create"]); //ok
+        Route::post('/saving_popolneniye/{balance_id}/{saving_id}', [SavingController::class, "saving_popolneniye"]); //ok
+        Route::post('/saving_vivod/{balance_id}/{saving_id}', [SavingController::class, "saving_vivod"]); //ok
+        Route::get('/saving_view/{saving_id}', [SavingController::class, "saving_view"]); //ok
         Route::delete('/saving_delete/{saving_id}', [SavingController::class, "saving_delete"]); //ok
-
-        Route::post('/limit_create/{balance_id}/{category_id}', [LimitController::class, "limit_create"]); //ok
-        Route::delete('/limit_delete/{balance_id}/{category_id}', [LimitController::class, "limit_delete"]); //ok
+        Route::put('/saving_update/{saving_id}', [SavingController::class, "saving_update"]); //ok
 
         Route::post('/transaction_create/{category_id}/{balance_id}', [TransactionController::class, "transaction_create"]); //ok
     });

@@ -16,15 +16,13 @@ class TransactionController extends Controller
         $transaction = new Transactions();
         $balance = Balance::where('id', $balance_id)->first();
         $category = Category::where('id', $category_id)->first();
-        $limit = Limit::where('balance_id', $balance_id)->where("cateogry_id", $category_id)->first();
 
         $transaction->category_id = $category_id;
         $transaction->balance_id = $balance_id;
         $transaction->amount = $request->amount;
         $transaction->save();
 
-        if ($category->platezh == 'rashod' || $limit->max_summ < $transaction->amount) {
-            $limit->max_summ = $limit->max_summ - $transaction->amount;
+        if ($category->platezh == 'rashod') {
             $balance->balance = $balance->balance - $transaction->amount;
             $balance->save();
         } elseif ($category->platezh == 'dohod') {
