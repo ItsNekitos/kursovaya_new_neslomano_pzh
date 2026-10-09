@@ -18,11 +18,11 @@ class SavingController extends Controller
         $saving->name = $request->name;
         $saving->save_date = $request->save_date;
         $saving->save();
-        return response([
+        return response()->json([
             "success" => true,
             "message" => "Success",
             "saving_id" => $saving->id,
-        ]);
+        ], 200);
     }
     public function saving_update(SavingUpdateRequest $request, $saving_id)
     {
@@ -35,7 +35,7 @@ class SavingController extends Controller
                 "success" => true,
                 "message" => "Success",
                 "saving_id" => $saving->id,
-            ]);
+            ], 200);
         }
         else{
             return response()->json(["message" => "Не верный пользователь"], 422);
@@ -51,7 +51,7 @@ class SavingController extends Controller
             "name"=>$saving->name,
             "amount" => $saving->save_amount,
             "saving_date"=>$saving->save_date,
-        ]);
+        ], 200);
     }
     public function saving_popolneniye(Request $request, $balance_id, $saving_id)
     {
@@ -64,7 +64,7 @@ class SavingController extends Controller
                 $saving->save_amount = $saving->save_amount + $value;
                 $balance->save();
                 $saving->save();
-                return response([
+                return response()->json([
                     "message" => "Success",
                     'sav' => $saving,
                 ]);
@@ -86,7 +86,7 @@ class SavingController extends Controller
                 $saving->save_amount = $saving->save_amount - $value;
                 $balance->save();
                 $saving->save();
-                return response([
+                return response()->json([
                     "message" => "Success",
                     'sav' => $saving,
                 ]);
@@ -101,9 +101,9 @@ class SavingController extends Controller
     {
         $saving = Saving::where('id', $saving_id);
         $saving->delete();
-        return response([
+        return response()->json([
             "success" => true,
             "message" => "Success",
-        ]);
+        ], 200);
     }
 }

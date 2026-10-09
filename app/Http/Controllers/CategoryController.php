@@ -15,9 +15,9 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->platezh = $request->platezh;
         $category->save(); 
-        return response([
+        return response()->json([
             "success" => true, "message" => "Success", "category_id" => $category->id,
-        ]);
+        ], 200);
     }
     public function category_view($category_id)
     {
@@ -28,7 +28,7 @@ class CategoryController extends Controller
             "category_id" => $category->id,
             "name"=>$category->name,
             "platezh" => $category->platezh,
-        ]);
+        ], 200);
     }
     public function category_update(CategoryUpdateRequest $request, $category_id)
     {
@@ -36,17 +36,17 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->platezh = $request->platezh;
         $category->save(); 
-        return response([
+        return response()->json([
             "success" => true, "message" => "Success", "category_id" => $category->id,
-        ]);
+        ], 200);
     }
     public function category_delete($category_id)
     {
         $category = Category::where('id', $category_id);
         $category->delete();
-        return response([
+        return response()->json([
             "success" => true,
             "message" => "Success",
-        ]);
+        ], 200);
     }
 }

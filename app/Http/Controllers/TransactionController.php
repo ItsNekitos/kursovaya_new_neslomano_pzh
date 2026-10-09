@@ -29,19 +29,19 @@ class TransactionController extends Controller
             $balance->balance = $balance->balance + $transaction->amount;
             $balance->save();
         } else {
-            return response([
+            return response()->json([
                 "success" => true,
                 "message" => "no",
-            ]);
+            ], 422);
         }
 
-        return response([
+        return response()->json([
             "success" => true,
             "message" => "Success",
             "category" => $category_id,
             "platezh" => $category->platezh,
             "balance_id" => $balance->id,
             "balance_dengi" => $balance->balance,
-        ]);
+        ], 200);
     }
 }

@@ -18,10 +18,10 @@ class UserController extends Controller
 
         $user = User::create($request->only(["email", "password", "first_name", "last_name"]));
         $token = $user->createToken("api");
-        return response([
+        return response()->json([
             "success" => true, "message" => "Success",
             'token' => $token->plainTextToken
-        ]);
+        ], 200);
     }
 
     //auth
@@ -30,12 +30,12 @@ class UserController extends Controller
 
         if ($user = User::where("email", $request->email)->first() and Hash::check($request->password, $user->password)) {
             $token = $user->createToken("api");
-            return response([
+            return response()->json([
                 "success" => true, "message" => "Success",
                 'token' => $token->plainTextToken
-            ]);
+            ], 200);
         } else {
-            return response([
+            return response()->json([
                 "success" => false, "message" => "Login failed"
             ], 401);
         }
@@ -43,8 +43,8 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return response([
+        return response()->json([
             "success" => true, "message" => "Logout",
-        ]);
+        ], 200);
     }
 }
