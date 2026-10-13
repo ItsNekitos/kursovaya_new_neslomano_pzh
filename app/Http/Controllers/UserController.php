@@ -20,7 +20,8 @@ class UserController extends Controller
         $token = $user->createToken("api");
         return response()->json([
             "success" => true, "message" => "Success",
-            'token' => $token->plainTextToken
+            'token' => $token->plainTextToken,
+            'user_id' => $user->id
         ], 200);
     }
 

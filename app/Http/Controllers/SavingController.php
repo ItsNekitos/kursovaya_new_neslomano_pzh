@@ -99,7 +99,10 @@ class SavingController extends Controller
     }
     public function saving_delete($saving_id)
     {
-        $saving = Saving::where('id', $saving_id);
+        $saving = Saving::where('id', $saving_id)->first();
+        if(!$saving){
+            return response()->json(['success' => false, 'error' => 'Такого накопительного не существует.'], 422);
+        }
         $saving->delete();
         return response()->json([
             "success" => true,
