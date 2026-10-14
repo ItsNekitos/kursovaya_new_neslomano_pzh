@@ -47,7 +47,7 @@ class BalanceController extends Controller
     {
         if (Auth::user()->role == "admin") {
             $balance = Balance::where('id', $balance_id)->first();
-            if(!$balance){
+            if (!$balance) {
                 return response()->json(['success' => false, 'error' => 'Такого баланса не существует.'], 422);
             }
             $balance->delete();

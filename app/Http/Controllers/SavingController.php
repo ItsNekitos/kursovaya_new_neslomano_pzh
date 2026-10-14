@@ -66,7 +66,7 @@ class SavingController extends Controller
                 $saving->save();
                 return response()->json([
                     "message" => "Success",
-                    'sav' => $saving,
+                    'saving' => $saving,
                 ]);
             } else {
                 return response()->json(["message" => "Не достаточно средств"], 422);
