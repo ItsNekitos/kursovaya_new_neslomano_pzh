@@ -43,6 +43,7 @@ class TransactionController extends Controller
                 "platezh" => $category->platezh,
                 "balance_id" => $balance->id,
                 "balance_dengi" => $balance->balance,
+                "transaction_id" => $transaction->id,
             ], 200);
         } else {
             return response()->json([
@@ -57,13 +58,14 @@ class TransactionController extends Controller
             if (!$transaction) {
                 return response()->json(['success' => false, 'error' => 'Такой транзакции не существует.'], 422);
             }
+            $category = Category::where('id', $transaction->category_id)->first();
             return response()->json([
                 "success" => true,
                 "message" => "Success",
                 "transaction_id" => $transaction->id,
                 "amount" => $transaction->amount,
                 "balance_id" => $transaction->balance_id,
-                "category"=>$transaction->category
+                "category"=>$category
             ], 200);
         } else {
             return response()->json([
