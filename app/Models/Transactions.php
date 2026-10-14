@@ -9,7 +9,7 @@ class Transactions extends Model
     protected $fillable = [
         'amount',
     ];
-    public function blances()
+    public function balances()
     {
         return $this->hasOne(Balance::class);
     }
