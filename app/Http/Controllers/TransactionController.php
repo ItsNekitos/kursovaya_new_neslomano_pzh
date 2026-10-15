@@ -27,14 +27,10 @@ class TransactionController extends Controller
             if ($category->platezh == 'rashod') {
                 $balance->balance = $balance->balance - $transaction->amount;
                 $balance->save();
-            } elseif ($category->platezh == 'dohod') {
+            }
+            if ($category->platezh == 'dohod') {
                 $balance->balance = $balance->balance + $transaction->amount;
                 $balance->save();
-            } else {
-                return response()->json([
-                    "success" => true,
-                    "message" => "no",
-                ], 422);
             }
             return response()->json([
                 "success" => true,
@@ -42,7 +38,7 @@ class TransactionController extends Controller
                 "category" => $category_id,
                 "platezh" => $category->platezh,
                 "balance_id" => $balance->id,
-                "balance_dengi" => $balance->balance,
+                "balance_amount" => $balance->balance,
                 "transaction_id" => $transaction->id,
             ], 200);
         } else {

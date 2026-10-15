@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    //register user
     public function registration(RegisterRequest $request)
     {
 
