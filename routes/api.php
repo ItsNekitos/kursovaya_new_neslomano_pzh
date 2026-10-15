@@ -12,35 +12,29 @@ use App\Http\Controllers\SavingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 
-
-
-
-Route::post('/registration', [UserController::class, "registration"]); //ok
-Route::post('/authorization', [UserController::class, "authorization"]); //ok
+Route::post('/registration', [UserController::class, "registration"]);
+Route::post('/authorization', [UserController::class, "authorization"]);
 
 Route::middleware('auth:sanctum')->group(function () {  
-        Route::get('/logout', [UserController::class, "logout"]); //ok
+        Route::get('/logout', [UserController::class, "logout"]);
 
-        Route::get('/balance_view/{balance_id}', [BalanceController::class, "balance_view"]); //ok
-        Route::post('/balance_create/{user}', [BalanceController::class, "balance_create"]); //ok
-        Route::delete('/balance_delete/{balance_id}', [BalanceController::class, "balance_delete"]); //ok
+        Route::get('/balance_view/{balance_id}', [BalanceController::class, "balance_view"]); //просмотр баланса
+        Route::post('/balance_create/{user}', [BalanceController::class, "balance_create"]); //создание баланса
+        Route::delete('/balance_delete/{balance_id}', [BalanceController::class, "balance_delete"]); //удаление баданса
 
-        Route::post('/category_create', [CategoryController::class, "category_create"]); //ok
-        Route::get('/category_view/{category_id}', [CategoryController::class, "category_view"]); //ok
-        Route::put('/category_update/{category_id}', [CategoryController::class, "category_update"]); //ok
-        Route::delete('/category_delete/{category_id}', [CategoryController::class, "category_delete"]); //ok
+        Route::post('/category_create', [CategoryController::class, "category_create"]); //создание категории
+        Route::get('/category_view/{category_id}', [CategoryController::class, "category_view"]); //просмотр категории
+        Route::put('/category_update/{category_id}', [CategoryController::class, "category_update"]); //обновление категории
+        Route::delete('/category_delete/{category_id}', [CategoryController::class, "category_delete"]); //удаление категории
 
-        Route::post('/saving_create', [SavingController::class, "saving_create"]); //ok
-        Route::post('/saving_popolneniye/{balance_id}/{saving_id}', [SavingController::class, "saving_popolneniye"]); //ok
-        Route::post('/saving_vivod/{balance_id}/{saving_id}', [SavingController::class, "saving_vivod"]); //ok
-        Route::get('/saving_view/{saving_id}', [SavingController::class, "saving_view"]); //ok
-        Route::delete('/saving_delete/{saving_id}', [SavingController::class, "saving_delete"]); //ok
-        Route::put('/saving_update/{saving_id}', [SavingController::class, "saving_update"]); //ok
+        Route::post('/saving_create', [SavingController::class, "saving_create"]); //создание накопительного
+        Route::post('/saving_popolneniye/{balance_id}/{saving_id}', [SavingController::class, "saving_popolneniye"]); //пополнение накопительного
+        Route::post('/saving_vivod/{balance_id}/{saving_id}', [SavingController::class, "saving_vivod"]); //вывод с накопительного
+        Route::get('/saving_view/{saving_id}', [SavingController::class, "saving_view"]); //просмотр накопительного
+        Route::delete('/saving_delete/{saving_id}', [SavingController::class, "saving_delete"]); //удаление накопительного
+        Route::put('/saving_update/{saving_id}', [SavingController::class, "saving_update"]); //обновление накопительного
 
-        Route::post('/transaction_create/{category_id}/{balance_id}', [TransactionController::class, "transaction_create"]); //ok
-        Route::get('/transaction_view/{transaction_id}', [TransactionController::class, "transaction_view"]); //ok
+        Route::post('/transaction_create/{category_id}/{balance_id}', [TransactionController::class, "transaction_create"]); //создание транзакции
+        Route::get('/transaction_view/{transaction_id}', [TransactionController::class, "transaction_view"]); //просмотр транзакции
     });
